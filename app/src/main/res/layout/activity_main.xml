@@ -5,21 +5,22 @@
     android:layout_height="fill_parent"
     android:stretchColumns="1">
     <LinearLayout android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="1034dp">
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.8">
 
 
         <ImageSwitcher
-            android:layout_width="match_parent"
-            android:layout_height="1034dp"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:id="@+id/imageSwitcher"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true">
 
             <ImageView
                 android:id="@+id/imageView1"
-                android:layout_width="wrap_content"
-                android:layout_height="1034dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
                 android:src="@drawable/image1"/>
@@ -29,21 +30,22 @@
     </LinearLayout>
     <LinearLayout android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="0dip"
+        android:layout_weight="0.2">
 
         <Button android:layout_weight="2"
             android:text="Resultado"
             android:id="@+id/buttonChart"
             android:layout_gravity="bottom"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"></Button>
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"></Button>
 
         <Button android:layout_weight="2"
             android:text="Enquete"
             android:id="@+id/button"
             android:layout_gravity="bottom"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"></Button>
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"></Button>
 
 
     </LinearLayout>

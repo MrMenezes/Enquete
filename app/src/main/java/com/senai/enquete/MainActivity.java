@@ -26,7 +26,7 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 
-    int imageIds[]={R.drawable.image1,R.drawable.image2,};
+    int imageIds[]={R.drawable.image1,R.drawable.image2,R.drawable.image3,};
     List<Animation> anim = new ArrayList<Animation>() ;
     ImageSwitcher Switch;
     ImageView images;
@@ -52,8 +52,9 @@ public class MainActivity extends Activity {
         btnChart = (Button) findViewById(R.id.buttonChart);
         btnChart.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                btnChart.setText("Sim: "+new EnqueteDAO(getApplicationContext()).getMax("S")+
-                        " Não:"+new EnqueteDAO(getApplicationContext()).getMax("N"));
+                PieChartDialogFragment newFragment = new PieChartDialogFragment();
+                newFragment.onCreate(savedInstanceStateTemp, getApplicationContext());
+                newFragment.show(getFragmentManager(),"Question");
             }
         });
         btnVotar = (Button) findViewById(R.id.button);
@@ -82,7 +83,6 @@ public class MainActivity extends Activity {
                     position++;
                     if(position>imageIds.length-1){position=0;}
                     images.setImageResource(imageIds[position]);
-                    //images.setBackgroundResource(R.drawable.mb__messagebar_divider);
                     Switch.setInAnimation(anim.get(0));
                     Switch.setOutAnimation(anim.get(1));
                     Switch.showNext();
@@ -126,7 +126,7 @@ public class MainActivity extends Activity {
                             public void onClick(DialogInterface dialog, int id) {
                                 // get user input and set it to result
                                 // edit text
-                                if (userInput.getText().toString().equals("!s3n@i!")){
+                                if (userInput.getText().toString().equals("")){
                                     finish();
                                 }
                             }

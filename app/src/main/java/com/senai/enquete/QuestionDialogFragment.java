@@ -34,10 +34,14 @@ public class QuestionDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceStatem) {
         // Build the dialog and set up the button click handlers
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("O Senai Faz a Pergunta não sei se muito grande mas importante e agora o que responder?")
+        builder.setTitle("Resultado")
+                .setMessage("O Senai Faz a Pergunta não sei se muito grande mas importante e agora o que responder?")
                 .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         new EnqueteDAO(getMyContext()).adicionar(new EnqueteDTO("S"));
+                        PieChartDialogFragment newFragment = new PieChartDialogFragment();
+                        newFragment.onCreate(getSavedInstanceStatem(), getMyContext());
+                        newFragment.show(getFragmentManager(), "Question");
                     }
                 })
                 .setNegativeButton("Não", new DialogInterface.OnClickListener() {

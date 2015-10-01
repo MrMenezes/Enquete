@@ -31,7 +31,9 @@ public class PieChartDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceStatem) {
         // Build the dialog and set up the button click handlers
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("O Senai Faz a Pergunta não sei se muito grande mas importante e agora o que responder?")
+        builder.setTitle("Resultado")
+                .setMessage("Sim:" + new EnqueteDAO(getMyContext()).getMax("S") + "\n"
+                        + "Nao:" + new EnqueteDAO(getMyContext()).getMax("N"))
                 .setPositiveButton("Voltar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                     }
