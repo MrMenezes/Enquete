@@ -3,13 +3,17 @@ package com.senai.enquete;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 
@@ -101,7 +105,45 @@ public class MainActivity extends Activity {
         return false;
     }
 
+    @Override
+    public void onBackPressed() {
+        // get prompts.xml view
+        LayoutInflater li = LayoutInflater.from(MainActivity.this);
+        View promptsView = li.inflate(R.layout.exit_dialog, null);
 
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+
+        // set prompts.xml to alertdialog builder
+        alertDialogBuilder.setView(promptsView);
+
+        final EditText userInput = (EditText) promptsView.findViewById(R.id.editTextDialogUserInput);
+
+        // set dialog message
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // get user input and set it to result
+                                // edit text
+                                if (userInput.getText().toString().equals("!s3n@i!")){
+                                    finish();
+                                }
+                            }
+                        })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+    }
 }
 
 
