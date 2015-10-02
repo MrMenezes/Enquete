@@ -5,13 +5,19 @@ package com.senai.enquete;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -28,7 +34,7 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 
-    int imageIds[]={R.drawable.image1,R.drawable.image2,R.drawable.image3,};
+    int imageIds[]={R.drawable.totem_img1,R.drawable.totem_img2,R.drawable.totem_img3,R.drawable.totem_img4};
     List<Animation> anim = new ArrayList<Animation>() ;
     ImageSwitcher Switch;
     ImageView images;
@@ -36,16 +42,21 @@ public class MainActivity extends Activity {
     private  int position = 0;
     private Button btnVotar,btnChart;
     Bundle savedInstanceStateTemp;
-
+    private int screenWidth;
+    private int screenHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        WindowManager wm = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE); // the results will be higher than using the activity context object or the getWindowManager() shortcut
+        wm.getDefaultDisplay().getMetrics(displayMetrics);
+        int screenWidth = displayMetrics.widthPixels;
+        int screenHeight = displayMetrics.heightPixels;
         Switch = (ImageSwitcher) findViewById(R.id.imageSwitcher);
         images = (ImageView) findViewById(R.id.imageView1);
-
         anim.add(AnimationUtils.loadAnimation(this,R.anim.enter_from_left));
         anim.add(AnimationUtils.loadAnimation(this,R.anim.exit_to_right));
         anim.add(AnimationUtils.loadAnimation(this,R.anim.enter_from_right));
@@ -53,11 +64,11 @@ public class MainActivity extends Activity {
         savedInstanceStateTemp = savedInstanceState;
         btnChart = (Button) findViewById(R.id.buttonChart);
         btnChart.setBackgroundColor(Color.BLUE);
+        final Intent intentResultado = new Intent(this, ResultadoActivity.class);
         btnChart.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                PieChartDialogFragment newFragment = new PieChartDialogFragment();
-                newFragment.onCreate(savedInstanceStateTemp, getApplicationContext());
-                newFragment.show(getFragmentManager(), "Question");
+            @Override
+            public void onClick(View view) {
+                startActivity(intentResultado);
             }
         });
         btnVotar = (Button) findViewById(R.id.button);
@@ -88,7 +99,8 @@ public class MainActivity extends Activity {
                 {
                     position++;
                     if(position>imageIds.length-1){position=0;}
-                    images.setImageResource(imageIds[position]);
+                    images.setImageBitmap(
+                            decodeSampledBitmapFromResource(getResources(), imageIds[position], 1080,1080));
                     Switch.setInAnimation(anim.get(0));
                     Switch.setOutAnimation(anim.get(1));
                     Switch.showNext();
@@ -96,9 +108,11 @@ public class MainActivity extends Activity {
 
                 }
                 else
-                {                    position= position-1;
-                        if(position<0){position=imageIds.length-1;}
-                        images.setImageResource(imageIds[position]);
+                {
+                    position= position-1;
+                    if(position<0){position=imageIds.length-1;}
+                    images.setImageBitmap(
+                            decodeSampledBitmapFromResource(getResources(), imageIds[position], 300,300));
                     Switch.setInAnimation(anim.get(2));
                     Switch.setOutAnimation(anim.get(3));
                     Switch.showPrevious();
@@ -110,6 +124,43 @@ public class MainActivity extends Activity {
         }
         return false;
     }
+
+    public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) > reqHeight && (halfWidth / inSampleSize) > reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
+    }
+
+    public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId, int reqWidth, int reqHeight) {
+
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(res, resId, options);
+
+        // Calculate inSampleSize
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeResource(res, resId, options);
+    }
+
 
     @Override
     public void onBackPressed() {

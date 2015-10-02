@@ -3,7 +3,6 @@
     android:id="@+id/layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/background"
     android:stretchColumns="1">
     <LinearLayout android:id="@+id/linearLayout5"
         android:layout_margin="20dp"
@@ -14,7 +13,7 @@
                     android:fontFamily="Roboto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/opiniao"
+                    android:text="@string/reducaoRecursos"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#ffffff" />
 
@@ -23,7 +22,7 @@
                     android:fontFamily="Roboto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/reducaoRecursos"
+                    android:text="@string/apoia"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#ffffff" />
     <LinearLayout android:id="@+id/linearLayout1"
@@ -31,8 +30,15 @@
         android:layout_marginBottom="120dp"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
+        <Button
+            android:id="@+id/buttonSim"
+            android:layout_gravity="center"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:layout_weight="1"
+            android:layout_width="200dp"
+            android:layout_height="200dp"></Button>
             <Button
-                android:background="@drawable/bt_nao"
                 android:id="@+id/buttonNao"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -41,18 +47,8 @@
                 android:layout_width="200dp"
                 android:layout_height="200dp"></Button>
 
-            <Button
-                android:background="@drawable/bt_sim"
-                android:id="@+id/buttonSim"
-                android:layout_gravity="center"
-                android:scaleType="centerInside"
-                android:adjustViewBounds="true"
-                android:layout_weight="1"
-                android:layout_width="200dp"
-                android:layout_height="200dp"></Button>
         </LinearLayout>
             <Button
-                android:background="@drawable/bt_voltar"
                 android:id="@+id/buttonVolt"
                 android:layout_gravity="center|bottom"
                 android:layout_width="247dp"

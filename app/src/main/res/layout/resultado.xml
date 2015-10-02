@@ -95,8 +95,8 @@
         </RelativeLayout>
         </LinearLayout>
         <Button
-            android:background="@drawable/bt_voltar"
             android:id="@+id/buttonVolt"
+            android:background="@drawable/bt_voltar"
             android:layout_gravity="center|bottom"
             android:layout_width="247dp"
             android:layout_height="60dp"></Button>
