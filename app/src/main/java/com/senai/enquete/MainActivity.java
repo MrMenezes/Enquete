@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -61,11 +62,13 @@ public class MainActivity extends Activity {
         });
         btnVotar = (Button) findViewById(R.id.button);
         btnVotar.setBackgroundColor(Color.CYAN);
+        final Intent intent =  new Intent(this, EnqueteActivity.class);
         btnVotar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                QuestionDialogFragment newFragment = new QuestionDialogFragment();
+                startActivity(intent);
+                /*QuestionDialogFragment newFragment = new QuestionDialogFragment();
                 newFragment.onCreate(savedInstanceStateTemp, getApplicationContext());
-                newFragment.show(getFragmentManager(),"Question");
+                newFragment.show(getFragmentManager(),"Question");*/
             }
         });
 

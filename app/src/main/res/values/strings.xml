@@ -4,4 +4,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="digite_senha">Digite a senha para sair</string>
+    <string name="opiniao">Queremos saber sua opinião</string>
+    <string name="reducaoRecursos">Você concorda com a redução de 30% dos recursos do Sistema S</string>
+    <string name="resultado">Resultado</string>
+    <string name="sim">SIM</string>
+    <string name="nao">NÃO</string>
 </resources>
