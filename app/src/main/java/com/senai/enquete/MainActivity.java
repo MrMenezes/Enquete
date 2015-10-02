@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -50,14 +51,16 @@ public class MainActivity extends Activity {
         anim.add(AnimationUtils.loadAnimation(this,R.anim.exit_to_left));
         savedInstanceStateTemp = savedInstanceState;
         btnChart = (Button) findViewById(R.id.buttonChart);
+        btnChart.setBackgroundColor(Color.BLUE);
         btnChart.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 PieChartDialogFragment newFragment = new PieChartDialogFragment();
                 newFragment.onCreate(savedInstanceStateTemp, getApplicationContext());
-                newFragment.show(getFragmentManager(),"Question");
+                newFragment.show(getFragmentManager(), "Question");
             }
         });
         btnVotar = (Button) findViewById(R.id.button);
+        btnVotar.setBackgroundColor(Color.CYAN);
         btnVotar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 QuestionDialogFragment newFragment = new QuestionDialogFragment();
