@@ -99,8 +99,7 @@ public class MainActivity extends Activity {
                 {
                     position++;
                     if(position>imageIds.length-1){position=0;}
-                    images.setImageBitmap(
-                            decodeSampledBitmapFromResource(getResources(), imageIds[position], 1080,1080));
+                    images.setImageResource(imageIds[position]);
                     Switch.setInAnimation(anim.get(0));
                     Switch.setOutAnimation(anim.get(1));
                     Switch.showNext();
@@ -111,8 +110,7 @@ public class MainActivity extends Activity {
                 {
                     position= position-1;
                     if(position<0){position=imageIds.length-1;}
-                    images.setImageBitmap(
-                            decodeSampledBitmapFromResource(getResources(), imageIds[position], 300,300));
+                    images.setImageResource(imageIds[position]);
                     Switch.setInAnimation(anim.get(2));
                     Switch.setOutAnimation(anim.get(3));
                     Switch.showPrevious();

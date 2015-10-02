@@ -24,13 +24,13 @@ public class EnqueteDAO  {
 
 
 
-    public int getMax(String resposta){
+    public Float getMax(String resposta){
         SQLiteDatabase db = bdEnquete.getReadableDatabase();
         Cursor mCount= db.rawQuery("select count(resposta) from enquete where resposta='" + resposta + "'", null);
         mCount.moveToFirst();
-        int count= mCount.getInt(0);
+        Integer count= mCount.getInt(0);
         mCount.close();
-        return count;
+        return count.floatValue();
 
     }
 
