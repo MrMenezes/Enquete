@@ -5,9 +5,11 @@ package com.senai.enquete;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -58,7 +60,7 @@ public class MainActivity extends Activity {
         int screenWidth = displayMetrics.widthPixels;
         int screenHeight = displayMetrics.heightPixels;
         Switch = (ViewFlipper) findViewById(R.id.viewFlipper);
-        Switch.setFlipInterval(3600);
+
         images = (ImageView) findViewById(R.id.imageView1);
         savedInstanceStateTemp = savedInstanceState;
         btnChart = (Button) findViewById(R.id.buttonChart);
@@ -71,7 +73,7 @@ public class MainActivity extends Activity {
             }
         });
         btnVotar = (Button) findViewById(R.id.button);
-        final Intent intent =  new Intent(this, EnqueteActivity.class);
+        final Intent intent = new Intent(this, EnqueteActivity.class);
         btnVotar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(intent);
@@ -80,6 +82,24 @@ public class MainActivity extends Activity {
                 newFragment.show(getFragmentManager(),"Question");*/
             }
         });
+
+
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                    images.setImageResource(imageIds[position]);
+                    Switch.showNext();
+                position++;
+                    if (position >= imageIds.length) {
+                        position = 0;
+                    }
+                    images.postDelayed(this, 20000); //set to go off again in 20 seconds.
+            }
+
+
+
+        } ;
+        images.postDelayed(r, 20000); // set first time for 20 seconds
 
 
     }
@@ -99,8 +119,6 @@ public class MainActivity extends Activity {
                     if(position>imageIds.length-1){position=0;}
                     images.setImageResource(imageIds[position]);
                     Switch.showNext();
-
-
                 }
                 else
                 {
@@ -108,51 +126,11 @@ public class MainActivity extends Activity {
                     if(position<0){position=imageIds.length-1;}
                     images.setImageResource(imageIds[position]);
                     Switch.showPrevious();
-
-
-
                 }
                 break;
         }
         return false;
     }
-
-    public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
-        // Raw height and width of image
-        final int height = options.outHeight;
-        final int width = options.outWidth;
-        int inSampleSize = 1;
-
-        if (height > reqHeight || width > reqWidth) {
-
-            final int halfHeight = height / 2;
-            final int halfWidth = width / 2;
-
-            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
-            // height and width larger than the requested height and width.
-            while ((halfHeight / inSampleSize) > reqHeight && (halfWidth / inSampleSize) > reqWidth) {
-                inSampleSize *= 2;
-            }
-        }
-
-        return inSampleSize;
-    }
-
-    public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId, int reqWidth, int reqHeight) {
-
-        // First decode with inJustDecodeBounds=true to check dimensions
-        final BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeResource(res, resId, options);
-
-        // Calculate inSampleSize
-        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
-
-        // Decode bitmap with inSampleSize set
-        options.inJustDecodeBounds = false;
-        return BitmapFactory.decodeResource(res, resId, options);
-    }
-
 
     @Override
     public void onBackPressed() {
@@ -194,6 +172,8 @@ public class MainActivity extends Activity {
         // show it
         alertDialog.show();
     }
+
+
 }
 
 

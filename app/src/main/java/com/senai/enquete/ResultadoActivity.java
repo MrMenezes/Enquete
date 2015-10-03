@@ -41,7 +41,7 @@ public class ResultadoActivity extends Activity{
             public boolean onLongClick(View v) {
                 Toast.makeText(getApplicationContext(),
                         "Sim: "+new EnqueteDAO(getApplicationContext()).getMax("S").toString()+
-                                "| Não: "+new EnqueteDAO(getApplicationContext()).getMax("N").toString(),Toast.LENGTH_LONG).show();
+                                " Não: "+new EnqueteDAO(getApplicationContext()).getMax("N").toString(),Toast.LENGTH_LONG).show();
                 return false;
             }
         });
