@@ -24,6 +24,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.senai.enquete.dao.EnqueteDAO;
 import com.senai.enquete.dto.EnqueteDTO;
@@ -36,7 +38,7 @@ public class MainActivity extends Activity {
 
     int imageIds[]={R.drawable.totem_img1,R.drawable.totem_img2,R.drawable.totem_img3,R.drawable.totem_img4};
     List<Animation> anim = new ArrayList<Animation>() ;
-    ImageSwitcher Switch;
+    ViewFlipper Switch;
     ImageView images;
     float initialX;
     private  int position = 0;
@@ -55,15 +57,13 @@ public class MainActivity extends Activity {
         wm.getDefaultDisplay().getMetrics(displayMetrics);
         int screenWidth = displayMetrics.widthPixels;
         int screenHeight = displayMetrics.heightPixels;
-        Switch = (ImageSwitcher) findViewById(R.id.imageSwitcher);
+        Switch = (ViewFlipper) findViewById(R.id.viewFlipper);
+        Switch.setFlipInterval(3600);
         images = (ImageView) findViewById(R.id.imageView1);
-        anim.add(AnimationUtils.loadAnimation(this,R.anim.enter_from_left));
-        anim.add(AnimationUtils.loadAnimation(this,R.anim.exit_to_right));
-        anim.add(AnimationUtils.loadAnimation(this,R.anim.enter_from_right));
-        anim.add(AnimationUtils.loadAnimation(this,R.anim.exit_to_left));
         savedInstanceStateTemp = savedInstanceState;
         btnChart = (Button) findViewById(R.id.buttonChart);
         final Intent intentResultado = new Intent(this, ResultadoActivity.class);
+
         btnChart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,8 +98,6 @@ public class MainActivity extends Activity {
                     position++;
                     if(position>imageIds.length-1){position=0;}
                     images.setImageResource(imageIds[position]);
-                    Switch.setInAnimation(anim.get(0));
-                    Switch.setOutAnimation(anim.get(1));
                     Switch.showNext();
 
 
@@ -109,8 +107,6 @@ public class MainActivity extends Activity {
                     position= position-1;
                     if(position<0){position=imageIds.length-1;}
                     images.setImageResource(imageIds[position]);
-                    Switch.setInAnimation(anim.get(2));
-                    Switch.setOutAnimation(anim.get(3));
                     Switch.showPrevious();
 
 
@@ -179,7 +175,8 @@ public class MainActivity extends Activity {
                             public void onClick(DialogInterface dialog, int id) {
                                 // get user input and set it to result
                                 // edit text
-                                if (userInput.getText().toString().equals("")){
+                                if (userInput.getText().toString().equals("adsapp")){
+
                                     finish();
                                 }
                             }

@@ -10,12 +10,10 @@
         android:layout_weight="0.8">
 
 
-        <ImageSwitcher
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/imageSwitcher"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true">
+        <ViewFlipper
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/viewFlipper" >
 
             <ImageView
                 android:id="@+id/imageView1"
@@ -24,8 +22,7 @@
                 android:layout_gravity="center"
                 android:background="@drawable/totem_img1"
                 android:scaleType="centerCrop" />
-
-        </ImageSwitcher>
+        </ViewFlipper>
 
     </LinearLayout>
     <LinearLayout android:id="@+id/linearLayout1"
