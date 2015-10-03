@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -146,8 +147,9 @@ public class MainActivity extends Activity {
         alertDialogBuilder.setView(promptsView);
 
         final EditText userInput = (EditText) promptsView.findViewById(R.id.editTextDialogUserInput);
-        userInput.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        userInput.setSingleLine();
+
+        userInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
 
         // set dialog message
         alertDialogBuilder
