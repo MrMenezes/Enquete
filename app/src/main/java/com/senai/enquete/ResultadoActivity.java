@@ -23,7 +23,7 @@ public class ResultadoActivity extends Activity{
         sim = new EnqueteDAO(this.getApplicationContext()).getMax("S");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.resultado);
-        total=sim+nao;
+        total=(sim.isNaN()?0:sim)+(nao.isNaN()?0:nao);
         sim=((sim/total*100));
         nao=(nao/total*100);
         textNao = (TextView) findViewById(R.id.textQuantNao);
