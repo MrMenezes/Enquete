@@ -19,6 +19,7 @@ public class ResultadoActivity extends Activity{
     private boolean isOnLongPress;
     private static float SCROLL_THRESHOLD = 10;
     private static int LONG_PRESS_TIME = 3000;
+    private View mHandler;
 
     public ResultadoActivity() {
     }
@@ -56,13 +57,16 @@ public class ResultadoActivity extends Activity{
                     mDownX = ev.getX();
                     mDownY = ev.getY();
                     isOnLongPress = true;
+                    mHandler.postDelayed(mLongPressed, LONG_PRESS_TIME);
                     break;
                 case MotionEvent.ACTION_CANCEL:
                 case MotionEvent.ACTION_UP:
+                    mHandler.removeCallbacks(mLongPressed);
                     isOnLongPress = false;
                     break;
                 case MotionEvent.ACTION_MOVE:
                     if (isOnLongPress && (Math.abs(mDownX - ev.getX()) > SCROLL_THRESHOLD || Math.abs(mDownY - ev.getY()) > SCROLL_THRESHOLD)) {
+                        mHandler.removeCallbacks(mLongPressed);
                         isOnLongPress = false;
                     }
                     break;
