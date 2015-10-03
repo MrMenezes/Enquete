@@ -10,16 +10,14 @@ import android.widget.Toast;
 
 import com.senai.enquete.dao.EnqueteDAO;
 
+import org.w3c.dom.Text;
+
 import java.text.DecimalFormat;
 
 public class ResultadoActivity extends Activity{
 
     private TextView textNao, textSim, textTotal;
-    private float mDownX,mDownY;
-    private boolean isOnLongPress;
-    private static float SCROLL_THRESHOLD = 10;
-    private static int LONG_PRESS_TIME = 3000;
-    private View mHandler;
+
 
     public ResultadoActivity() {
     }
@@ -36,6 +34,17 @@ public class ResultadoActivity extends Activity{
         nao=(nao/total*100);
         sim=sim.isNaN()?0:sim;
         nao=nao.isNaN()?0:nao;
+        TextView texResult = (TextView) findViewById(R.id.textView1);
+        texResult.setOnLongClickListener(new View.OnLongClickListener(){
+
+            @Override
+            public boolean onLongClick(View v) {
+                Toast.makeText(getApplicationContext(),
+                        "Sim: "+new EnqueteDAO(getApplicationContext()).getMax("S").toString()+
+                                "| Não: "+new EnqueteDAO(getApplicationContext()).getMax("N").toString(),Toast.LENGTH_LONG).show();
+                return false;
+            }
+        });
         textNao = (TextView) findViewById(R.id.textQuantNao);
         textNao.setText(new DecimalFormat("#").format(nao).toString()+"%");
         textSim = (TextView) findViewById(R.id.textQuantSim);
@@ -47,39 +56,5 @@ public class ResultadoActivity extends Activity{
             }
         });
     }
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
 
-
-
-            switch (ev.getAction() & MotionEvent.ACTION_MASK) {
-                case MotionEvent.ACTION_DOWN:
-                    mDownX = ev.getX();
-                    mDownY = ev.getY();
-                    isOnLongPress = true;
-                    mHandler.postDelayed(mLongPressed, LONG_PRESS_TIME);
-                    break;
-                case MotionEvent.ACTION_CANCEL:
-                case MotionEvent.ACTION_UP:
-                    mHandler.removeCallbacks(mLongPressed);
-                    isOnLongPress = false;
-                    break;
-                case MotionEvent.ACTION_MOVE:
-                    if (isOnLongPress && (Math.abs(mDownX - ev.getX()) > SCROLL_THRESHOLD || Math.abs(mDownY - ev.getY()) > SCROLL_THRESHOLD)) {
-                        mHandler.removeCallbacks(mLongPressed);
-                        isOnLongPress = false;
-                    }
-                    break;
-            }
-
-
-
-
-        return super.dispatchTouchEvent(ev);
-    }
-    private Runnable mLongPressed = new Runnable() {
-        public void run() {
-           Toast.makeText(getApplicationContext(),(new EnqueteDAO(getApplicationContext()).getMax("S")+new EnqueteDAO(getApplicationContext()).getMax("N").toString()),Toast.LENGTH_LONG);
-        }
-    };
 }
