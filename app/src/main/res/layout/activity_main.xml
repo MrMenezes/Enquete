@@ -33,18 +33,20 @@
         android:layout_weight="0.2">
 
         <Button android:layout_weight="2"
-            android:text="Resultado"
+            android:text=""
             android:id="@+id/buttonChart"
             android:layout_gravity="bottom"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"></Button>
+            android:layout_height="fill_parent"
+            android:background="@drawable/bt_resultado"></Button>
 
         <Button android:layout_weight="2"
-            android:text="Enquete"
+            android:text=""
             android:id="@+id/button"
             android:layout_gravity="bottom"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"></Button>
+            android:layout_height="fill_parent"
+            android:background="@drawable/bt_votar"></Button>
 
     </LinearLayout>
 </TableLayout>

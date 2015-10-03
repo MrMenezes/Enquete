@@ -38,7 +38,6 @@ public class EnqueteActivity extends Activity {
     private Intent intentResultado;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         myContext = this.getApplicationContext();
@@ -58,6 +57,7 @@ public class EnqueteActivity extends Activity {
             public void onClick(View view) {
                 new EnqueteDAO(myContext).adicionar(new EnqueteDTO("S"));
                 startActivity(intentResultado);
+                finish();
             }
         });
 
@@ -67,6 +67,7 @@ public class EnqueteActivity extends Activity {
             public void onClick(View view) {
                 new EnqueteDAO(myContext).adicionar(new EnqueteDTO("N"));
                 startActivity(intentResultado);
+                finish();
             }
         });
 

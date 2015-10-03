@@ -63,7 +63,6 @@ public class MainActivity extends Activity {
         anim.add(AnimationUtils.loadAnimation(this,R.anim.exit_to_left));
         savedInstanceStateTemp = savedInstanceState;
         btnChart = (Button) findViewById(R.id.buttonChart);
-        btnChart.setBackgroundColor(Color.BLUE);
         final Intent intentResultado = new Intent(this, ResultadoActivity.class);
         btnChart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +71,6 @@ public class MainActivity extends Activity {
             }
         });
         btnVotar = (Button) findViewById(R.id.button);
-        btnVotar.setBackgroundColor(Color.CYAN);
         final Intent intent =  new Intent(this, EnqueteActivity.class);
         btnVotar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
