@@ -2,35 +2,25 @@ package com.senai.enquete;
 
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.DialogFragment;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentSender;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageSwitcher;
 import android.widget.ImageView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-import com.senai.enquete.dao.EnqueteDAO;
-import com.senai.enquete.dto.EnqueteDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,8 +38,15 @@ public class MainActivity extends Activity {
     Bundle savedInstanceStateTemp;
     private int screenWidth;
     private int screenHeight;
+    private Runnable r;
+
 
     @Override
+    protected void onDestroy(){
+        images.removeCallbacks(r);
+        super.onDestroy();
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -84,7 +81,7 @@ public class MainActivity extends Activity {
         });
 
 
-        Runnable r = new Runnable() {
+        r = new Runnable() {
             @Override
             public void run() {
                     images.setImageResource(imageIds[position]);
@@ -172,6 +169,7 @@ public class MainActivity extends Activity {
         // show it
         alertDialog.show();
     }
+
 
 
 }
