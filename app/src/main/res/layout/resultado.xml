@@ -3,6 +3,7 @@
     android:id="@+id/layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:padding="40dp"
     android:background="@drawable/background"
     android:stretchColumns="1">
 
@@ -10,19 +11,28 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
-        android:layout_weight="0.06"
-        android:layout_margin="20dp">
+        android:layout_weight="0.08">
         <TextView
             android:id="@+id/textView1"
+            android:textSize="45dp"
             android:fontFamily="Roboto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/resultado"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#ffffff" />
-
+        <TextView
+            android:id="@+id/textView4"
+            android:fontFamily="Roboto"
+            android:textSize="45dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffffff" />
         <TextView
             android:id="@+id/textView2"
+            android:textSize="45dp"
             android:fontFamily="Roboto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,67 +42,44 @@
         <TextView
             android:id="@+id/textView3"
             android:fontFamily="Roboto"
+            android:textSize="45dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/apoia"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#ffffff" />
     </LinearLayout>
-    <LinearLayout android:id="@+id/linearLayout1"
+
+    <LinearLayout android:id="@+id/linearLayout12"
+        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
-        android:layout_weight="0.02"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
-        <TextView
-            android:layout_gravity="center"
-            android:layout_weight="2"
-            android:fontFamily="Roboto"
-            android:textSize="30dp"
-            android:id="@+id/textNao"
-            android:layout_alignParentLeft="true"
-            android:textColor="#ffffff"
-            android:text="@string/nao"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_centerVertical="true"></TextView>
-
-        <TextView
-            android:layout_gravity="center"
-            android:layout_weight="2"
-            android:fontFamily="Roboto"
-            android:textSize="50dp"
-            android:layout_alignParentRight="true"
-            android:id="@+id/textQuantNao"
-            android:textColor="#ffffff"
-            android:text="99%"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"></TextView>
-    </LinearLayout>
+        android:layout_weight="0.06"
+        android:layout_margin="10dp">
     <LinearLayout android:id="@+id/linearLayout11"
         android:layout_width="fill_parent"
-        android:layout_height="0dip"
-        android:layout_weight="0.02"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
+        android:layout_height="fill_parent"
+        android:layout_weight="2">
         <TextView
-            android:layout_gravity="center"
+            android:layout_gravity="left"
             android:layout_weight="2"
+            android:gravity="center|left"
             android:fontFamily="Roboto"
-            android:textSize="30dp"
+            android:textSize="50dp"
             android:id="@+id/textSim"
             android:layout_alignParentLeft="true"
             android:textColor="#ffffff"
             android:text="@string/sim"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_centerVertical="true"></TextView>
+            android:layout_height="fill_parent"></TextView>
 
         <TextView
             android:layout_gravity="center"
             android:layout_weight="2"
+            android:gravity="center|right"
             android:fontFamily="Roboto"
-            android:textSize="50dp"
+            android:textSize="80dp"
+            android:textStyle="bold"
             android:layout_alignParentRight="true"
             android:id="@+id/textQuantSim"
             android:textColor="#ffffff"
@@ -103,12 +90,47 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1px"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
         android:background="#ffffff" />
+    <LinearLayout android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="2">
+        <TextView
+            android:layout_gravity="center"
+            android:gravity="center|left"
+            android:layout_weight="2"
+            android:fontFamily="Roboto"
+            android:textSize="50dp"
+            android:id="@+id/textNao"
+            android:layout_alignParentLeft="true"
+            android:textColor="#ffffff"
+            android:text="@string/nao"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerVertical="true"></TextView>
+
+        <TextView
+            android:layout_gravity="center"
+            android:gravity="center|right"
+            android:layout_weight="2"
+            android:fontFamily="Roboto"
+            android:textSize="80dp"
+            android:textStyle="bold"
+            android:layout_alignParentRight="true"
+            android:id="@+id/textQuantNao"
+            android:textColor="#ffffff"
+            android:text="0%"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"></TextView>
+    </LinearLayout>
+    </LinearLayout>
     <LinearLayout android:id="@+id/linearLayout2"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:orientation="vertical"
-        android:layout_weight="0.04"/>
+        android:layout_weight="0.06"/>
     <LinearLayout android:id="@+id/linearLayout3"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
@@ -116,19 +138,13 @@
         android:layout_weight="0.02">
         <Button
             android:id="@+id/buttonVolt"
-            android:layout_weight="1"
             android:layout_gravity="center"
-            android:layout_width="200dp"
-            android:layout_height="fill_parent"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/bt_voltar"/>
 
 
     </LinearLayout>
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.01"
-        android:visibility="invisible"/>
 
 
 </TableLayout>

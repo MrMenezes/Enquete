@@ -4,18 +4,18 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/background"
+    android:padding="40dp"
     android:stretchColumns="1">
 
     <LinearLayout android:id="@+id/linearLayout5"
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
-        android:layout_weight="0.06"
-        android:layout_margin="50dp">
+        android:layout_weight="0.06">
         <TextView
             android:id="@+id/textView1"
             android:fontFamily="Roboto"
-            android:textSize="100dp"
+            android:textSize="45dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/reducaoRecursos"
@@ -24,7 +24,7 @@
         <TextView
             android:id="@+id/textView23"
             android:fontFamily="Roboto"
-            android:textSize="100dp"
+            android:textSize="45dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
@@ -34,7 +34,7 @@
         <TextView
             android:id="@+id/textView2"
             android:fontFamily="Roboto"
-            android:textSize="100dp"
+            android:textSize="45dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/apoia"
@@ -44,8 +44,7 @@
     <LinearLayout android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
-        android:layout_margin="50dp"
-        android:layout_weight="0.06">
+        android:layout_weight="0.045">
     <LinearLayout android:id="@+id/linearLayout232"
         android:layout_width="0dip"
         android:gravity="center"
@@ -82,22 +81,17 @@
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:orientation="vertical"
-        android:layout_weight="0.02">
+        android:layout_weight="0.014">
         <Button
             android:id="@+id/buttonVolt"
-            android:layout_weight="3"
             android:layout_gravity="center"
-            android:layout_width="wrap_content"
+            android:layout_width="500dp"
             android:layout_height="wrap_content"
             android:background="@drawable/bt_voltar"/>
 
 
     </LinearLayout>
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.01"
-        android:visibility="invisible"/>
+
 
 
 </TableLayout>
